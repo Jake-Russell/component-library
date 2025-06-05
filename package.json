@@ -1,0 +1,41 @@
+{
+  "name": "ui-library-new",
+  "version": "1.0.0",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "rollup": "rollup -c"
+  },
+  "author": "Jake Russell",
+  "license": "ISC",
+  "description": "Custom React component library",
+  "peerDependencies": {
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.x",
+    "@babel/plugin-transform-runtime": "^7.x",
+    "@babel/preset-env": "^7.x",
+    "@babel/preset-react": "^7.x",
+    "@babel/runtime": "^7.x",
+    "@rollup/plugin-babel": "^6.x",
+    "@rollup/plugin-commonjs": "^25.x",
+    "@rollup/plugin-node-resolve": "^15.x",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.x",
+    "@types/react": "^19.1.6",
+    "@types/react-dom": "^19.1.6",
+    "rollup": "^3.x",
+    "rollup-plugin-peer-deps-external": "^2.x",
+    "rollup-plugin-postcss": "^4.x",
+    "typescript": "^5.x"
+  },
+  "dependencies": {
+    "tslib": "^2.8.1"
+  }
+}
