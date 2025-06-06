@@ -13,7 +13,9 @@
   ],
   "scripts": {
     "rollup": "rollup -c",
-    "test": "jest"
+    "test": "jest",
+    "build-storybook": "storybook build",
+    "storybook": "storybook dev -p 6006"
   },
   "author": "Jake Russell",
   "license": "ISC",
@@ -34,17 +36,26 @@
     "@rollup/plugin-node-resolve": "^15.x",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.x",
+    "@storybook/addon-a11y": "^9.x",
+    "@storybook/addon-docs": "^9.x",
+    "@storybook/addon-links": "^9.x",
+    "@storybook/addon-styling-webpack": "^2.x",
+    "@storybook/addon-webpack5-compiler-swc": "^3.x",
+    "@storybook/react-webpack5": "^9.0.5",
     "@testing-library/react": "^16.x",
     "@types/jest": "^29.x",
     "@types/react": "^19.x",
     "@types/react-dom": "^19.x",
     "babel-jest": "^29.x",
-    "identity-obj-proxy": "^3.0.0",
+    "identity-obj-proxy": "^3.x",
     "jest": "^29.x",
     "jest-environment-jsdom": "^29.x",
     "rollup": "^3.x",
     "rollup-plugin-peer-deps-external": "^2.x",
     "rollup-plugin-postcss": "^4.x",
+    "sass": "^1.x",
+    "sass-loader": "^16.x",
+    "storybook": "^9.x",
     "typescript": "^5.x"
   }
 }
