@@ -1,4 +1,3 @@
-// rollup.config.js
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
@@ -7,16 +6,18 @@ import postcss from 'rollup-plugin-postcss';
 import typescript from '@rollup/plugin-typescript';
 import terser from '@rollup/plugin-terser';
 
+import packageJson from './package.json' assert { type: 'json' };
+
 export default {
-  input: 'src/index.ts', // or index.js if not using TypeScript
+  input: 'src/index.ts',
   output: [
     {
-      file: 'dist/index.cjs.js',
+      file: packageJson.main,
       format: 'cjs',
       sourcemap: true,
     },
     {
-      file: 'dist/index.esm.js',
+      file: packageJson.module,
       format: 'esm',
       sourcemap: true,
     },
