@@ -1,6 +1,10 @@
 {
-  "name": "ui-library-new",
-  "version": "1.0.0",
+  "name": "@jake-russell/component-library",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/jake-russell"
+  },
+  "repository": "https://github.com/Jake-Russell/component-library.git",
+  "version": "1.0.1",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/types/index.d.ts",
