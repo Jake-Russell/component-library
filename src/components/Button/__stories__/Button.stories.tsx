@@ -1,3 +1,4 @@
+import React from 'react';
 import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { ButtonProps } from '../types';
 import Button from '../Button';
