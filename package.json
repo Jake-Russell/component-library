@@ -1,10 +1,13 @@
 {
   "name": "@jake-russell/component-library",
+  "version": "0.0.8",
+  "description": "Custom React component library",
+  "author": "Jake Russell",
+  "license": "ISC",
+  "repository": "https://github.com/Jake-Russell/component-library.git",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/jake-russell"
   },
-  "repository": "https://github.com/Jake-Russell/component-library.git",
-  "version": "0.0.8",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -18,9 +21,6 @@
     "build-storybook": "storybook build",
     "storybook": "storybook dev -p 6006"
   },
-  "author": "Jake Russell",
-  "license": "ISC",
-  "description": "Custom React component library",
   "peerDependencies": {
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
