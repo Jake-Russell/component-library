@@ -1,15 +1,13 @@
-import packageJson from './package.json' with { type: 'json' };
+const packageJson = require('./package.json');
+const peerDepsExternal = require('rollup-plugin-peer-deps-external');
+const nodeResolve = require('@rollup/plugin-node-resolve').default;
+const commonjs = require('@rollup/plugin-commonjs');
+const typescript = require('@rollup/plugin-typescript');
+const postcss = require('rollup-plugin-postcss');
+const terser = require('@rollup/plugin-terser');
+const { InjectStylesheetImport } = require('./config/rollupUtils.js');
 
-import peerDepsExternal from 'rollup-plugin-peer-deps-external';
-import nodeResolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
-import typescript from '@rollup/plugin-typescript';
-import postcss from 'rollup-plugin-postcss';
-import terser from '@rollup/plugin-terser';
-
-import { InjectStylesheetImport } from './config/rollupUtils.js';
-
-export default {
+module.exports = {
   input: 'src/index.ts',
   output: [
     {
