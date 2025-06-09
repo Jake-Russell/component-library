@@ -1,29 +1,36 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "React Component Library",
   "compilerOptions": {
-    "target": "ES6",
+    "target": "ESNext",
     "module": "ESNext",
     "lib": ["DOM", "ESNext"],
+    "jsx": "react-jsx",
+
     "declaration": true,
-    "declarationDir": "./dist",
+    "declarationDir": "dist",
     "emitDeclarationOnly": true,
-    "outDir": "./dist",
-    "jsx": "react",
-    "strict": true,
+    "outDir": "dist",
+    "rootDir": "src",
+
     "esModuleInterop": true,
-    "moduleResolution": "node",
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "allowSyntheticDefaultImports": true,
     "importHelpers": true,
-    "rootDir": "./src"
+    "isolatedModules": true,
+
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
+    "noUncheckedIndexedAccess": true,
+    "skipLibCheck": true,
+    "strict": true,
+
+    "types": ["node", "jest"]
   },
   "include": ["src"],
   "exclude": [
     "node_modules",
     "dist",
+    "**/*.stories.tsx",
     "**/*.test.ts",
-    "**/*.test.tsx",
-    "**/*.stories.tsx"
+    "**/*.test.tsx"
   ]
 }
