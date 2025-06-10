@@ -2,8 +2,7 @@ name: Build & Publish Library
 
 on:
   push:
-    branches:
-      - '**'
+    branches: [main]
   pull_request:
     branches: [main]
 
@@ -70,4 +69,4 @@ jobs:
         if: env.should_publish == 'true'
         run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
