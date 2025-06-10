@@ -36,12 +36,6 @@ jobs:
       - name: Check for version bump necessity
         id: check
         run: |
-          if [ "${{ github.event_name }}" == "pull_request" ]; then
-            echo "Workflow triggered by a PR - skipping publish."
-            echo "should_publish=false" >> $GITHUB_ENV
-            exit 0
-          fi
-
           git fetch origin main
           CHANGED_FILES=$(git diff --name-only origin/main HEAD)
           CHANGED_SRC=$(echo "$CHANGED_FILES" | grep '^src/' || true)
@@ -59,6 +53,12 @@ jobs:
           else
             echo "✅ src/ changed and version was bumped."
             echo "should_publish=true" >> $GITHUB_ENV
+          fi
+
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            echo "Workflow triggered by a PR - skipping publish."
+            echo "should_publish=false" >> $GITHUB_ENV
+            exit 0
           fi
 
       - name: Build package
