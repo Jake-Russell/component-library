@@ -31,12 +31,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Run tests
+        run: npm run test
+
       - name: Check for version bump necessity
         id: check
         run: |
           echo "GITHUB_EVENT_NAME=${{ github.event_name }}"
 
-          if [ "${{ github.event_name }}" == "pull_request" ]; then
+          if [ "${{ github.event_name }}" == "push" ]; then
             echo "Workflow triggered by a PR - skipping publish."
             echo "should_publish=false" >> $GITHUB_ENV
             exit 0
