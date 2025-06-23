@@ -1,36 +1,30 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
-  "display": "React Component Library",
-  "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "lib": ["DOM", "ESNext"],
-    "jsx": "react-jsx",
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "display": "React Component Library",
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "ESNext",
+        "lib": ["DOM", "ESNext"],
+        "jsx": "react-jsx",
 
-    "declaration": true,
-    "declarationDir": "dist",
-    "emitDeclarationOnly": true,
-    "outDir": "dist",
-    "rootDir": "src",
+        "declaration": true,
+        "declarationDir": "dist",
+        "emitDeclarationOnly": true,
+        "outDir": "dist",
+        "rootDir": "src",
 
-    "esModuleInterop": true,
-    "importHelpers": true,
-    "isolatedModules": true,
+        "esModuleInterop": true,
+        "importHelpers": true,
+        "isolatedModules": true,
 
-    "moduleResolution": "node",
-    "forceConsistentCasingInFileNames": true,
-    "noUncheckedIndexedAccess": true,
-    "skipLibCheck": true,
-    "strict": true,
+        "moduleResolution": "node",
+        "forceConsistentCasingInFileNames": true,
+        "noUncheckedIndexedAccess": true,
+        "skipLibCheck": true,
+        "strict": true,
 
-    "types": ["node", "jest"]
-  },
-  "include": ["src"],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "**/*.stories.tsx",
-    "**/*.test.ts",
-    "**/*.test.tsx"
-  ]
+        "types": ["node", "jest"]
+    },
+    "include": ["src"],
+    "exclude": ["node_modules", "dist", "**/*.stories.tsx", "**/*.test.ts", "**/*.test.tsx"]
 }
