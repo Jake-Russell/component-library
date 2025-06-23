@@ -17,8 +17,8 @@
     "scripts": {
         "build": "rollup --config rollup.config.js src/index.ts",
         "build-storybook": "storybook build",
-        "format": "prettier --write ./**/*.{js,jsx,ts,tsx,json,css,scss}",
-        "lint": "eslint ./**/*.{js,jsx,ts,tsx,json,css,scss}",
+        "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,css,scss}\"",
+        "lint": "eslint \"**/*.{js,jsx,ts,tsx,json,css,scss}\"",
         "rollup": "rollup -c",
         "storybook": "storybook dev -p 6006",
         "test": "jest"

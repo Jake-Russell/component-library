@@ -35,5 +35,12 @@ export default defineConfig([
             "react-hooks/rules-of-hooks": "warn",
         },
     },
-    globalIgnores(["rollup.config.js"]),
+    globalIgnores([
+        "dist",
+        "node_modules",
+        ".storybook/dist",
+        "storybook-static",
+        "package-lock.json",
+        "rollup.config.js",
+    ]),
 ]);
