@@ -1,72 +1,75 @@
 name: Build & Publish Library
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
 
 jobs:
-  build-and-publish:
-    runs-on: ubuntu-latest
+    build-and-publish:
+        runs-on: ubuntu-latest
 
-    permissions:
-      contents: read
-      packages: write
+        permissions:
+            contents: read
+            packages: write
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          registry-url: https://npm.pkg.github.com
-          scope: '@jake-russell'
+            - name: Set up Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 22
+                  registry-url: https://npm.pkg.github.com
+                  scope: "@jake-russell"
 
-      - name: Install dependencies
-        run: npm ci
+            - name: Install dependencies
+              run: npm ci
 
-      - name: Run tests
-        run: npm run test
+            - name: Lint code
+              run: npm run lint
 
-      - name: Check for version bump necessity
-        id: check
-        run: |
-          git fetch --no-tags --depth=2 origin main
-          CHANGED_FILES=$(git diff --name-only HEAD^ HEAD)
-          CHANGED_SRC=$(echo "$CHANGED_FILES" | grep '^src/' || true)
+            - name: Run tests
+              run: npm run test
 
-          OLD_VERSION=$(git show HEAD^:package.json | jq -r '.version')
-          NEW_VERSION=$(jq -r '.version' package.json)
+            - name: Check for version bump necessity
+              id: check
+              run: |
+                  git fetch --no-tags --depth=2 origin main
+                  CHANGED_FILES=$(git diff --name-only HEAD^ HEAD)
+                  CHANGED_SRC=$(echo "$CHANGED_FILES" | grep '^src/' || true)
 
-          if [ -z "$CHANGED_SRC" ]; then
-            echo "✅ No changes in src/. Skipping build and publish."
-            echo "should_publish=false" >> $GITHUB_ENV
-            exit 0
-          elif [ "$OLD_VERSION" == "$NEW_VERSION" ]; then
-            echo "❌ src/ changed but version was not bumped."
-            exit 1
-          else
-            echo "✅ src/ changed and version was bumped."
-            echo "should_publish=true" >> $GITHUB_ENV
-          fi
+                  OLD_VERSION=$(git show HEAD^:package.json | jq -r '.version')
+                  NEW_VERSION=$(jq -r '.version' package.json)
 
-          if [ "${{ github.event_name }}" == "pull_request" ]; then
-            echo "Workflow triggered by a PR - skipping publish."
-            echo "should_publish=false" >> $GITHUB_ENV
-            exit 0
-          fi
+                  if [ -z "$CHANGED_SRC" ]; then
+                    echo "✅ No changes in src/. Skipping build and publish."
+                    echo "should_publish=false" >> $GITHUB_ENV
+                    exit 0
+                  elif [ "$OLD_VERSION" == "$NEW_VERSION" ]; then
+                    echo "❌ src/ changed but version was not bumped."
+                    exit 1
+                  else
+                    echo "✅ src/ changed and version was bumped."
+                    echo "should_publish=true" >> $GITHUB_ENV
+                  fi
 
-      - name: Build package
-        if: env.should_publish == 'true'
-        run: npm run build
+                  if [ "${{ github.event_name }}" == "pull_request" ]; then
+                    echo "Workflow triggered by a PR - skipping publish."
+                    echo "should_publish=false" >> $GITHUB_ENV
+                    exit 0
+                  fi
 
-      - name: Publish to GitHub Packages
-        if: env.should_publish == 'true'
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+            - name: Build package
+              if: env.should_publish == 'true'
+              run: npm run build
+
+            - name: Publish to GitHub Packages
+              if: env.should_publish == 'true'
+              run: npm publish
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
